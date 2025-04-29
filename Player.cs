@@ -15,10 +15,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public float gadMod = 6f;
     void Start()
     {
+       
         _rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
 
-       if(animator == null)
+        animator.SetInteger("Boom", 0);   // 추가
+        animator.SetInteger("Flap", 0);   // 추가
+
+
+        if (animator == null)
         {
             Debug.LogError("Animator not found in children.");
         }
@@ -30,6 +35,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     void Update()
     {
+       
         if (isDead)
         {
       
@@ -47,6 +53,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonUp(0))
             {
                 isFlap = true;
+                animator.SetInteger("Flap", 1);
             }
 
         }
@@ -64,6 +71,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 velocity.x = forwardForce;
                 velocity.y += speed;
                 isFlap = false;
+
+                animator.SetInteger("Flap", 0);
             }
 
 
@@ -81,7 +90,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         isDead = true;
         deathCooldown = 1f;
 
-        animator.SetInteger("Die",1);
+        animator.SetInteger("Boom",2);
 
     }
 
