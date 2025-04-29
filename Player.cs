@@ -81,7 +81,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         isDead = true;
         deathCooldown = 1f;
 
-        animator.SetInteger("IsDie",1);
+        animator.SetInteger("Die",1);
 
     }
 
